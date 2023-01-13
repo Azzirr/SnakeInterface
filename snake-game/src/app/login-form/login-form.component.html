@@ -7,7 +7,7 @@
             </div>
             <input required minlength="3" maxlength="12" ngModel #box (keyup)="getName(box.value)" #userName="ngModel" name="userName" id="userName" type="text" class="form-control">
             <div style="color: red" *ngIf="userName.touched && !userName.valid">
-                <div *ngIf="userName.errors?.['required']">User name is required.</div>
+                <div *ngIf="userName.errors?.['required']" #whenEmpty >User name is required.</div>
                 <div *ngIf="userName.errors?.['minlength']">User name should be minimum {{userName.errors?.['minlength'].requiredLength}} characters.</div>
             </div>
         </div>
@@ -31,3 +31,4 @@
 <div *ngIf="startSnake">
     <p>Hello {{displayValue}} {{token}}</p>
 </div>
+
