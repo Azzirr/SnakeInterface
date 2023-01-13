@@ -1,0 +1,33 @@
+<form *ngIf="!startSnake">
+    <h2 style="text-align: center">Welcome to our world!</h2>
+    <div class="form-container">
+        <div class="margin">
+            <div>
+                <label for="userName">User name: </label>
+            </div>
+            <input required minlength="3" maxlength="12" ngModel #box (keyup)="getName(box.value)" #userName="ngModel" name="userName" id="userName" type="text" class="form-control">
+            <div style="color: red" *ngIf="userName.touched && !userName.valid">
+                <div *ngIf="userName.errors?.['required']">User name is required.</div>
+                <div *ngIf="userName.errors?.['minlength']">User name should be minimum {{userName.errors?.['minlength'].requiredLength}} characters.</div>
+            </div>
+        </div>
+        <div class="margin">
+            <div>
+                <label for="token">Token: </label>
+            </div>
+            <input required pattern="pass123word" maxlength="20" #passwordBox (keyup)="getToken(passwordBox.value)" ngModel #token="ngModel" name="token" id="token" [type]="tokenType" class="form-control">
+            <div style="color: red" *ngIf="token.touched && !token.valid">
+                <div *ngIf="token.errors?.['required']">Token is required.</div>
+                <div *ngIf="token.errors?.['pattern']">Invalid token.</div>
+            </div>
+        </div>
+        <div class="margin">
+            <button item-end (click)="hidePassword()">Show/Hide token</button>
+        </div>
+        <button class="start-button" (click)="startGame()">Start game!</button>
+    </div>
+</form>
+
+<div *ngIf="startSnake">
+    <p>Hello {{displayValue}} {{token}}</p>
+</div>

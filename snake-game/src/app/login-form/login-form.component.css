@@ -1,0 +1,30 @@
+.margin{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.form-container{
+    border: 2px solid red;
+    width: 300px;
+    height: 450px;
+    margin-top: auto;
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 2%;
+}
+.start-button{
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    background: radial-gradient(#46761d, #11f809);
+    border-radius: 14px;
+    margin-top: 200px;
+    margin-left: 75px;
+}
+.start-button:hover{
+    border-top: red solid 5px;
+    border-left: red solid 5px;
+    border-bottom: rgb(22, 5, 208) solid 5px;
+    border-right: rgb(22, 5, 208) solid 5px;
+    transition: 0.2s ease;
+}
