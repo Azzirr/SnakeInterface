@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'login-form',
@@ -14,7 +14,7 @@ export class LoginFormComponent implements OnInit {
   name: string = 'Username'
   displayValue: string = '';
   token: string = '';
-
+  @Output() startEvent = new EventEmitter<boolean>();
   hidePassword(){
     if(this.tokenShown){
       this.tokenShown = false;
@@ -24,11 +24,20 @@ export class LoginFormComponent implements OnInit {
       this.tokenType = 'text'
     }
   }
-
+  @ViewChild('whenEmpty')
+  whenEmpty!: ElementRef;
   startGame(){
     if(this.token === 'pass123word' && this.displayValue !== '' && this.displayValue.length >= 3){
-      this.startSnake = true;
+      this.startSnake = true
     }
+    
+    if(this.name === 'Username' || this.name === undefined || this.name === null){
+      this.whenEmpty.nativeElement.innerHTML = "User name can't be empty";
+    }
+  }
+
+  send(){
+    this.startEvent.emit(this.startSnake)
   }
 
   getName(value: string){
@@ -38,7 +47,6 @@ export class LoginFormComponent implements OnInit {
   getToken(value: string){
     this.token = value;
   }
-
   constructor() { }
 
   ngOnInit(): void {

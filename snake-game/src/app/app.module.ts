@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PlayComponent } from './play/play.component';
-import { PlayModule } from '@angular/core';
+import { NgxSnakeModule } from 'ngx-snake';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { PlayModule } from '@angular/core';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    PlayModule
+    NgxSnakeModule
 
   ],
   providers: [],

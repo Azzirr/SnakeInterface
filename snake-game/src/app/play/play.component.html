@@ -1,1 +1,38 @@
-<p>play works!</p>
+<div class="gameInfo">
+    <h3>Game info</h3>
+    <div>
+        Timer: {{timer}}
+    </div>
+    <div>
+        Points
+    </div> 
+    <div>
+        User info
+    </div>
+</div>
+<div class="game">
+    <!-- NGX Snake -->
+    <ngx-snake #game></ngx-snake>
+    <div style="white-space: pre-wrap;">
+        <div style="margin-left: 40%">
+            <button (click)="game.actionStart()" style="font-size: 26px;">Start</button>
+            <button (click)="game.actionStop()" style="font-size: 26px;">Stop</button>
+            <button (click)="game.actionReset()" style="font-size: 26px;">Reset</button>
+        </div>
+        <p></p>
+        <!-- Move buttons -->
+        <div style="margin-left: 15%;">
+            <button (click)="game.actionUp()">Up</button>
+        </div>
+        <div>
+            <button (click)="game.actionLeft()">Left</button>
+            <button (click)="game.actionRight()" style="margin-left: 23%">Right</button>
+        </div>
+        <div style="margin-left: 15%">
+            <button (click)="game.actionDown()">Down</button>
+        </div>
+    </div>
+
+    <!-- NGX Snake -->
+</div>
+

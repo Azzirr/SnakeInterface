@@ -1,0 +1,11 @@
+.game{
+    margin-left: 40%;
+    margin-top: -10%;
+}
+.gameInfo{
+    border: 2px red solid;
+    width: 400px;
+    height: 300px;
+    margin-left: 10%;
+    padding-left: 5px;
+}

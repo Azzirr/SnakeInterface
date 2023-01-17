@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'snake-game';
+
+  startSnake: boolean = false;
+  receiveStart($event: any){
+    this.startSnake = true;
+  }
 }
