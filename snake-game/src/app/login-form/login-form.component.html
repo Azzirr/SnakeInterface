@@ -1,11 +1,11 @@
-<!-- <form *ngIf="!startSnake">
+<form *ngIf="!startSnake">
     <h2 style="text-align: center">Welcome to our world!</h2>
     <div class="form-container">
         <div class="margin">
             <div>
                 <label for="userName">User name: </label>
             </div>
-            <input required minlength="3" maxlength="12" ngModel #box (keyup)="getName(box.value)" #userName="ngModel" name="userName" id="userName" type="text" class="form-control">
+            <input required minlength="3" maxlength="12" ngModel #box (keyup)="getName(box.value)" #userName="ngModel" name="userName" [(ngModel)]="name" id="userName" type="text" class="form-control">
             <div style="color: red" *ngIf="userName.touched && !userName.valid">
                 <div *ngIf="userName.errors?.['required']">User name is required.</div>
                 <div *ngIf="userName.errors?.['minlength']">User name should be minimum {{userName.errors?.['minlength'].requiredLength}} characters.</div>
@@ -24,10 +24,10 @@
         <div class="margin">
             <button item-end (click)="hidePassword()">Show/Hide token</button>
         </div>
-        <button class="start-button" (click)="startGame()" (click)="send()">Start game!</button>
+        <button class="start-button" (click)="startGame()" (click)="insertName(name)">Start game!</button>
     </div>
-</form> -->
+</form>
 
-<div *ngIf="!startSnake">
-    <app-play></app-play>
+<div *ngIf="startSnake">
+    <app-play [name]="name"></app-play>
 </div>

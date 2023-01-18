@@ -1,13 +1,21 @@
+<div *ngIf="playing">
+<h2 style="margin-left: 42%">Good luck {{name}}!</h2>
 <div class="gameInfo">
     <h3>Game info</h3>
+    <div>
+        Game status: {{gameStatus}}
+    </div>
     <div>
         Timer: {{timer}}
     </div>
     <div>
         Points
-    </div> 
-    <div>
-        User info
+    </div>
+    Gameplay history:
+    <div class="actionTable">
+        <ul *ngFor="let action of gameHistory">
+                {{action}}
+        </ul>
     </div>
 </div>
 <div class="game">
@@ -15,9 +23,9 @@
     <ngx-snake #game></ngx-snake>
     <div style="white-space: pre-wrap;">
         <div style="margin-left: 40%">
-            <button (click)="game.actionStart()" style="font-size: 26px;">Start</button>
-            <button (click)="game.actionStop()" style="font-size: 26px;">Stop</button>
-            <button (click)="game.actionReset()" style="font-size: 26px;">Reset</button>
+            <button (click)="game.actionStart()" (click)="gameStatusStart()" style="font-size: 26px;">Start</button>
+            <button (click)="game.actionStop()" (click)="gameStatusPaused()" style="font-size: 26px;">Stop</button>
+            <button (click)="game.actionReset()" (click)="gameStatusReset()" style="font-size: 26px;">Reset</button>
         </div>
         <p></p>
         <!-- Move buttons -->
@@ -31,8 +39,11 @@
         <div style="margin-left: 15%">
             <button (click)="game.actionDown()">Down</button>
         </div>
+        <button (click)="exitButton()">Exit Game</button>
     </div>
-
     <!-- NGX Snake -->
 </div>
-
+</div>
+<div *ngIf="!playing">
+    <login-form></login-form>
+</div>

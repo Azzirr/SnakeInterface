@@ -9,3 +9,10 @@
     margin-left: 10%;
     padding-left: 5px;
 }
+.actionTable{
+    overflow-y: scroll; 
+    height: 100px; 
+    display: block;
+    margin-top: 5px;
+    border: 2px green solid;
+}

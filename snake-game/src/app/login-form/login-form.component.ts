@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef, Output, EventEmitter, Injectable } from '@angular/core';
 
 @Component({
   selector: 'login-form',
@@ -11,10 +11,13 @@ export class LoginFormComponent implements OnInit {
   tokenType: string = 'password';
   tokenShown: boolean = false;
   startSnake: boolean = false;
-  name: string = 'Username'
+  name: string = 'Username';
   displayValue: string = '';
   token: string = '';
-  @Output() startEvent = new EventEmitter<boolean>();
+  @Output() eventTask = new EventEmitter<string>();
+  insertName(task: string){
+    this.eventTask.emit(task)
+  }
   hidePassword(){
     if(this.tokenShown){
       this.tokenShown = false;
@@ -23,6 +26,7 @@ export class LoginFormComponent implements OnInit {
       this.tokenShown = true;
       this.tokenType = 'text'
     }
+    console.log(this.name)
   }
   @ViewChild('whenEmpty')
   whenEmpty!: ElementRef;
@@ -30,16 +34,11 @@ export class LoginFormComponent implements OnInit {
     if(this.token === 'pass123word' && this.displayValue !== '' && this.displayValue.length >= 3){
       this.startSnake = true
     }
-    
     if(this.name === 'Username' || this.name === undefined || this.name === null){
       this.whenEmpty.nativeElement.innerHTML = "User name can't be empty";
     }
+    return this.name;
   }
-
-  send(){
-    this.startEvent.emit(this.startSnake)
-  }
-
   getName(value: string){
     this.displayValue = value;
   }
