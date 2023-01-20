@@ -17,6 +17,12 @@
                 {{action}}
         </ul>
     </div>
+    <select [(ngModel)]="defaultSortValue" (ngModelChange)="sortTable($event)">
+        <option *ngFor="let action of sort" [value]="action.description">
+            {{action.description}}
+        </option>
+    </select>    
+
 </div>
 <div class="game">
     <!-- NGX Snake -->
