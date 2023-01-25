@@ -14,11 +14,14 @@ export class PlayComponent implements OnInit {
   points: number = 0;
   sort: Array<any> = [{description: 'From earliest to latest'}, {description: 'From latest to earliest'}];
   defaultSortValue: string = 'From earliest to latest'; //used for sort table
+  filteredString: string = '';
+  resetTimer: boolean = false;
 
 
   public gameStatusStart(){
     this.gameStatus = 'Game is running'
     this.gameHistory.push(`Second ${this.timer}: ` + this.gameStatus)
+    this.resetTimer = false;
   }
   public gameStatusEnd(){
     this.gameStatus = 'Game over'
@@ -27,6 +30,7 @@ export class PlayComponent implements OnInit {
   public gameStatusReset(){
     this.gameStatus = 'Ready to go'
     this.gameHistory.push(`Second ${this.timer}: ` + 'Game restarted and ready to go')
+    this.resetTimer = true;
   }
   public gameStatusPaused(){
     this.gameStatus = 'Game is paused'
@@ -42,7 +46,6 @@ export class PlayComponent implements OnInit {
   public startSort(value: any){
       this.gameHistory.reverse();
   }
-
 
   @Input() name: string = '';
   constructor() { }

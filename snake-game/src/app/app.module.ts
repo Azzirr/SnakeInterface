@@ -6,12 +6,14 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PlayComponent } from './play/play.component';
 import { NgxSnakeModule } from 'ngx-snake';
+import { FilterPipe } from './Pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
     PlayComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

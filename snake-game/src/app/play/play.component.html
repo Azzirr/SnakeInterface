@@ -2,7 +2,7 @@
 <h2 style="margin-left: 42%">Good luck {{name}}!</h2>
 <div class="gameInfo">
     <h3>Game info</h3>
-    <div>
+    <div class="snakeFont">
         Game status: {{gameStatus}}
     </div>
     <div>
@@ -13,7 +13,7 @@
     </div>
     Gameplay history:
     <div class="actionTable">
-        <ul *ngFor="let action of gameHistory">
+        <ul *ngFor="let action of gameHistory | filter: filteredString">
                 {{action}}
         </ul>
     </div>
@@ -21,7 +21,9 @@
         <option *ngFor="let action of sort" [value]="action.description">
             {{action.description}}
         </option>
-    </select>    
+    </select>
+    <input type="text" placeholder="Search..." [(ngModel)]="filteredString"/>
+
 
 </div>
 <div class="game">
@@ -47,6 +49,7 @@
         </div>
         <button (click)="exitButton()">Exit Game</button>
     </div>
+    
     <!-- NGX Snake -->
 </div>
 </div>
