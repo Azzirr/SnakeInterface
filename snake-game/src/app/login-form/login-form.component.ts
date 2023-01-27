@@ -11,7 +11,7 @@ export class LoginFormComponent implements OnInit {
   tokenType: string = 'password';
   tokenShown: boolean = false;
   startSnake: boolean = false;
-  name: string = 'Username';
+  name: string = '';
   displayValue: string = '';
   token: string = '';
   @Output() eventTask = new EventEmitter<string>();

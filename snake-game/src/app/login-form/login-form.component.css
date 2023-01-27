@@ -28,3 +28,9 @@
     border-right: rgb(22, 5, 208) solid 5px;
     transition: 0.2s ease;
 }
+.view{
+    height: 1024px;
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}

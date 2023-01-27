@@ -31,23 +31,23 @@
     <ngx-snake #game></ngx-snake>
     <div style="white-space: pre-wrap;">
         <div style="margin-left: 40%">
-            <button (click)="game.actionStart()" (click)="gameStatusStart()" style="font-size: 26px;">Start</button>
-            <button (click)="game.actionStop()" (click)="gameStatusPaused()" style="font-size: 26px;">Stop</button>
-            <button (click)="game.actionReset()" (click)="gameStatusReset()" style="font-size: 26px;">Reset</button>
+            <button (click)="game.actionStart()" (click)="gameStatusStart()" style="font-size: 26px;" class="button">Start</button>
+            <button (click)="game.actionStop()" (click)="gameStatusPaused()" style="font-size: 26px;" class="button">Stop</button>
+            <button (click)="game.actionReset()" (click)="gameStatusReset()" style="font-size: 26px;" class="button">Reset</button>
         </div>
         <p></p>
         <!-- Move buttons -->
         <div style="margin-left: 15%;">
-            <button (click)="game.actionUp()">Up</button>
+            <button (click)="game.actionUp()" class="arrow right" class="arrow up"></button>
         </div>
         <div>
-            <button (click)="game.actionLeft()">Left</button>
-            <button (click)="game.actionRight()" style="margin-left: 23%">Right</button>
+            <button (click)="game.actionLeft()" class="arrow left"></button>
+            <button (click)="game.actionRight()" style="margin-left: 23%" class="arrow right"></button>
         </div>
         <div style="margin-left: 15%">
-            <button (click)="game.actionDown()">Down</button>
+            <button (click)="game.actionDown()" class="arrow down"></button>
         </div>
-        <button (click)="exitButton()">Exit Game</button>
+        <button (click)="exitButton()" class="button">Exit Game</button>
     </div>
     
     <!-- NGX Snake -->

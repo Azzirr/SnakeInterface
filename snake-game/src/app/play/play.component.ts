@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { interval } from 'rxjs';
 
 @Component({
@@ -16,7 +16,6 @@ export class PlayComponent implements OnInit {
   defaultSortValue: string = 'From earliest to latest'; //used for sort table
   filteredString: string = '';
   resetTimer: boolean = false;
-
 
   public gameStatusStart(){
     this.gameStatus = 'Game is running'
@@ -58,5 +57,4 @@ export class PlayComponent implements OnInit {
       })
     }
   }
-
 }
