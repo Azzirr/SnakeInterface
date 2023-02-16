@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { NgxSnakeComponent } from 'ngx-snake';
 import { interval } from 'rxjs';
 
 @Component({
@@ -16,11 +17,14 @@ export class PlayComponent implements OnInit {
   defaultSortValue: string = 'From earliest to latest'; //used for sort table
   filteredString: string = '';
   resetTimer: boolean = false;
+  disableDropdownFilter: boolean = true;
+  
 
   public gameStatusStart(){
     this.gameStatus = 'Game is running'
     this.gameHistory.push(`Second ${this.timer}: ` + this.gameStatus)
     this.resetTimer = false;
+    this.disableDropdownFilter = false;
   }
   public gameStatusEnd(){
     this.gameStatus = 'Game over'

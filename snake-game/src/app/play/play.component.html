@@ -9,7 +9,7 @@
         Timer: {{timer}}
     </div>
     <div>
-        Points
+        Points:
     </div>
     Gameplay history:
     <div class="actionTable">
@@ -17,7 +17,7 @@
                 {{action}}
         </ul>
     </div>
-    <select [(ngModel)]="defaultSortValue" (ngModelChange)="sortTable($event)">
+    <select disabled="{{disableDropdownFilter}}" [(ngModel)]="defaultSortValue" (ngModelChange)="sortTable($event)">
         <option *ngFor="let action of sort" [value]="action.description">
             {{action.description}}
         </option>
