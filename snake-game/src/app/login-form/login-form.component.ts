@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input, ElementRef, Output, EventEmitter, Injectable } from '@angular/core';
-
+import { DataService } from '../Services/data.service';
 @Component({
   selector: 'login-form',
   templateUrl: './login-form.component.html',
@@ -7,10 +7,14 @@ import { Component, OnInit, ViewChild, Input, ElementRef, Output, EventEmitter, 
 })
 
 export class LoginFormComponent implements OnInit {
+  constructor(private data: DataService){
 
+  }
+  updateName(name: string){
+    this.data.updateData(name);
+  }
   tokenType: string = 'password';
   tokenShown: boolean = false;
-  startSnake: boolean = false;
   name: string = '';
   displayValue: string = '';
   token: string = '';
@@ -30,15 +34,7 @@ export class LoginFormComponent implements OnInit {
   }
   @ViewChild('whenEmpty')
   whenEmpty!: ElementRef;
-  startGame(){
-    if(this.token === 'pass123word' && this.displayValue !== '' && this.displayValue.length >= 3){
-      this.startSnake = true
-    }
-    if(this.name === 'Username' || this.name === undefined || this.name === null){
-      this.whenEmpty.nativeElement.innerHTML = "User name can't be empty";
-    }
-    return this.name;
-  }
+
   getName(value: string){
     this.displayValue = value;
   }
@@ -46,8 +42,6 @@ export class LoginFormComponent implements OnInit {
   getToken(value: string){
     this.token = value;
   }
-  constructor() { }
-
   ngOnInit(): void {
   }
 

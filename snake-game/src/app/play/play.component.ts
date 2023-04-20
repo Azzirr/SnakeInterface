@@ -1,13 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgxSnakeComponent } from 'ngx-snake';
 import { interval } from 'rxjs';
-
+import { DataService } from '../Services/data.service';
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.css']
 })
 export class PlayComponent implements OnInit {
+  name = '';
   timer: number = 0;
   playing: boolean = true;
   gameStatus: string = 'Ready to go';
@@ -50,8 +51,10 @@ export class PlayComponent implements OnInit {
       this.gameHistory.reverse();
   }
 
-  @Input() name: string = '';
-  constructor() { }
+  // @Input() name: string = '';
+  constructor(private data: DataService) {
+    
+   }
 
   ngOnInit(): void {
     const time = interval(1000);
@@ -60,5 +63,7 @@ export class PlayComponent implements OnInit {
         this.timer = element;
       })
     }
+
+    this.data.share.subscribe((value: string) => this.name = value);
   }
 }

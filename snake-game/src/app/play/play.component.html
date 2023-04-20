@@ -47,12 +47,9 @@
         <div style="margin-left: 15%">
             <button (click)="game.actionDown()" class="arrow down"></button>
         </div>
-        <button (click)="exitButton()" class="button">Exit Game</button>
+        <button class="button" routerLink="/">Exit Game</button>
     </div>
     
     <!-- NGX Snake -->
 </div>
-</div>
-<div *ngIf="!playing">
-    <login-form></login-form>
 </div>

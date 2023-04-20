@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PlayComponent } from './play/play.component';
 import { NgxSnakeModule } from 'ngx-snake';
 import { FilterPipe } from './Pipes/filter.pipe';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,8 @@ import { FilterPipe } from './Pipes/filter.pipe';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxSnakeModule
-
+    NgxSnakeModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
