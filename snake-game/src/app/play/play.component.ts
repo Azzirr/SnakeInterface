@@ -26,6 +26,7 @@ export class PlayComponent implements OnInit {
     this.gameHistory.push(`Second ${this.timer}: ` + this.gameStatus)
     this.resetTimer = false;
     this.disableDropdownFilter = false;
+    console.log(this.points)
   }
   public gameStatusEnd(){
     this.gameStatus = 'Game over'
@@ -34,7 +35,9 @@ export class PlayComponent implements OnInit {
   public gameStatusReset(){
     this.gameStatus = 'Ready to go'
     this.gameHistory.push(`Second ${this.timer}: ` + 'Game restarted and ready to go')
+    this.gameHistory.push(`You gained ${this.points} points!`)
     this.resetTimer = true;
+    this.points = 0;
   }
   public gameStatusPaused(){
     this.gameStatus = 'Game is paused'
@@ -50,7 +53,10 @@ export class PlayComponent implements OnInit {
   public startSort(value: any){
       this.gameHistory.reverse();
   }
-
+  public pointsCount() {
+    this.points++;
+    console.log(this.points)
+  }
   // @Input() name: string = '';
   constructor(private data: DataService) {
     

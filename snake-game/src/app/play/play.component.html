@@ -9,7 +9,7 @@
         Timer: {{timer}}
     </div>
     <div>
-        Points:
+        Points: {{points}}
     </div>
     Gameplay history:
     <div class="actionTable">
@@ -28,7 +28,7 @@
 </div>
 <div class="game">
     <!-- NGX Snake -->
-    <ngx-snake #game></ngx-snake>
+    <ngx-snake #game (foodEaten)="pointsCount()"></ngx-snake>
     <div style="white-space: pre-wrap;">
         <div style="margin-left: 40%">
             <button (click)="game.actionStart()" (click)="gameStatusStart()" style="font-size: 26px;" class="button">Start</button>
