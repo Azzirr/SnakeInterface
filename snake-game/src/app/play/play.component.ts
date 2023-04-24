@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 import { NgxSnakeComponent } from 'ngx-snake';
 import { interval } from 'rxjs';
 import { DataService } from '../Services/data.service';
+import { ScoreService } from '../Services/score.service';
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
@@ -57,9 +58,14 @@ export class PlayComponent implements OnInit {
     this.points++;
     console.log(this.points)
   }
-  // @Input() name: string = '';
-  constructor(private data: DataService) {
-    
+  constructor(
+    private data: DataService,
+    private score: ScoreService
+  ) {
+    this.score.fetchScore().subscribe((data) => {
+      console.log(data)
+      // put data to variable and then show it
+    });
    }
 
   ngOnInit(): void {
