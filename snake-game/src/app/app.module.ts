@@ -9,6 +9,7 @@ import { FilterPipe } from './Pipes/filter.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { ScoreService } from './Services/score.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SortPipe } from './Pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginFormComponent,
     PlayComponent,
     FilterPipe,
+    SortPipe,
   ],
   imports: [
     BrowserModule,

@@ -16,12 +16,12 @@ export class PlayComponent implements OnInit {
   gameHistory: Array<string> = [];
   points: number = 0;
   sort: Array<any> = [{description: 'From earliest to latest'}, {description: 'From latest to earliest'}];
+  sortScoresButton: Array<any> = [{description: 'Sort ascending'}, {description: 'Sort descending'}];
   defaultSortValue: string = 'From earliest to latest'; //used for sort table
   filteredString: string = '';
   resetTimer: boolean = false;
   disableDropdownFilter: boolean = true;
-  scores: any = [];
-  
+  scores: Array<any> = [];
 
   public gameStatusStart(){
     this.gameStatus = 'Game is running'
@@ -59,17 +59,21 @@ export class PlayComponent implements OnInit {
     this.points++;
     console.log(this.points)
   }
+  public sortScores(value: any){
+    this.scores.reverse();
+  }
 
   constructor(
     private data: DataService,
     private score: ScoreService
   ) {
     this.score.fetchScore().subscribe((data) => {
-      console.log(typeof data)
-      console.log(data)
       this.scores = data;
-      console.log(Object.keys(this.scores))
-      // put data to variable and then show it
+      console.log(typeof this.scores[1].score)
+      
+      this.scores = this.scores.sort(function(a: any, b: any){
+        return b.score - a.score
+      }).slice(0, 10)
     });
    }
 
@@ -82,5 +86,7 @@ export class PlayComponent implements OnInit {
     }
 
     this.data.share.subscribe((value: string) => this.name = value);
+
+    //filtering scores for only top 10 entries
   }
 }
