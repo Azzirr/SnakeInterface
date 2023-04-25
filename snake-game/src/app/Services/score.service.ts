@@ -13,7 +13,7 @@ export class ScoreService {
   // Fetching scores from database. GET method
   fetchScore(){
     const URL = 'http://scores.chrum.it/scores/snake';
-    return this.http.get(URL, 
+    return this.http.get<Array<any>>(URL, 
       {headers: new HttpHeaders({
         'accept' : 'application/json'
       })});

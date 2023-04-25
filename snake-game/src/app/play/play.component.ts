@@ -20,6 +20,7 @@ export class PlayComponent implements OnInit {
   filteredString: string = '';
   resetTimer: boolean = false;
   disableDropdownFilter: boolean = true;
+  scores: any = [];
   
 
   public gameStatusStart(){
@@ -58,12 +59,16 @@ export class PlayComponent implements OnInit {
     this.points++;
     console.log(this.points)
   }
+
   constructor(
     private data: DataService,
     private score: ScoreService
   ) {
     this.score.fetchScore().subscribe((data) => {
+      console.log(typeof data)
       console.log(data)
+      this.scores = data;
+      console.log(Object.keys(this.scores))
       // put data to variable and then show it
     });
    }
