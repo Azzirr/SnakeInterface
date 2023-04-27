@@ -68,12 +68,10 @@
   transform: scale(1.05) rotate(-1deg);
 }
 
-ngx-snake ngx-snake-tile {
+ngx-snake {
   background: #000000;
 }
-ngx-snake ngx-snake-tile.free div {
-  background: #000000;
-}
+
 
 #scores {
   font-family: Arial, Helvetica, sans-serif;
