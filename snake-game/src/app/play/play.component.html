@@ -27,15 +27,12 @@
 
 <div class="game">
     <!-- NGX Snake -->
-    <ngx-snake #game (foodEaten)="pointsCount()" class="ngx-snake"></ngx-snake>
+    <ngx-snake #game (foodEaten)="pointsCount()"></ngx-snake>
     <div style="white-space: pre-wrap;">
         <div style="margin-left: 40%">
             <button (click)="game.actionStart()" (click)="gameStatusStart()" style="font-size: 26px;" class="button">Start</button>
             <button (click)="game.actionStop()" (click)="gameStatusPaused()" style="font-size: 26px;" class="button">Stop</button>
             <button (click)="game.actionReset()" (click)="gameStatusReset()" style="font-size: 26px;" class="button">Reset</button>
-            <div>
-                <button style="font-size: 26px;" class="button">High/Normal Contrast</button>
-            </div>
         </div>
         <p></p>
         <!-- Move buttons -->

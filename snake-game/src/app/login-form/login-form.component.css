@@ -34,10 +34,3 @@
     margin-left: auto;
     margin-right: auto;
 }
-.invalidBorder{
-    border: 1px solid red;
-}
-.text-error{
-    color: red;
-    font-size: 14px;
-}
