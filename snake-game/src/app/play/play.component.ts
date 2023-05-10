@@ -62,6 +62,9 @@ export class PlayComponent implements OnInit {
   public sortScores(value: any){
     this.scores.reverse();
   }
+  public sendScore(){
+    this.score.addScore()
+  }
 
   constructor(
     private data: DataService,

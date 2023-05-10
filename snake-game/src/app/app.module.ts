@@ -28,7 +28,7 @@ import { SortPipe } from './Pipes/sort.pipe';
     HttpClientModule
   ],
   providers: [
-    {provide: ScoreService , useClass : ScoreService}
+    {provide: ScoreService , useClass : ScoreService},
   ],
   bootstrap: [AppComponent]
 })
