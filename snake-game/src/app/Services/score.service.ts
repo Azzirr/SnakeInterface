@@ -5,19 +5,29 @@ import { Injectable } from "@angular/core";
 export class ScoreService {
   constructor(private http: HttpClient ) { }
   
+  token: string = '';
+  getAuth(auth: string){
+    this.token = auth;
+    console.log(this.token);
+  }
   // Adding your score to score list. POST method
-  addScore(){
-    let data = {
-      "name": "big floppa",
-      "game": "snake",
-      "score": "69",
-      // "auth-token": "1234"
+  addScore(score: {'name': string, 'game': string, 'score': string}){
+    let scoreToPost: object = {
+      ...score,
+      'auth-token': this.token
     }
-    this.http.post('http://scores.chrum.it/scores', data)
-    .subscribe((response) => {
-      console.log(response)
-    });
-    return this.http.post('http://scores.chrum.it/scores', {})
+    let alert: string = 'Are you sure?';
+    if(confirm(alert) === true){
+      const headers = new HttpHeaders({'accept' : 'application/json'});
+      this.http.post(
+        'http://scores.chrum.it/scores/',
+        scoreToPost, {headers: headers}).subscribe((response) => {
+          console.log(response);
+        })
+    } else {
+      return;
+    }
+
   }
 
   // Fetching scores from database. GET method

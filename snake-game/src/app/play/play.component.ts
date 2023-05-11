@@ -63,7 +63,12 @@ export class PlayComponent implements OnInit {
     this.scores.reverse();
   }
   public sendScore(){
-    this.score.addScore()
+    let score = {
+      'name': this.name, 
+      'game': 'snake', 
+      'score': this.points.toString(),
+    }
+    this.score.addScore(score)
   }
 
   constructor(
@@ -76,7 +81,7 @@ export class PlayComponent implements OnInit {
       
       this.scores = this.scores.sort(function(a: any, b: any){
         return b.score - a.score
-      }).slice(0, 10)
+      }).slice(0, 15)
     });
    }
 

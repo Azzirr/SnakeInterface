@@ -63,6 +63,7 @@ export class LoginFormComponent implements OnInit {
       return;
     } else{
       if(this.authComplete['success'] === true){
+        this.score.getAuth(this.token);
         this.accessGranted = true;
       }
     }
