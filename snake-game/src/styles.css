@@ -3,3 +3,15 @@
 .form-control.ng-touched.ng-invalid{
     border: 2px solid red;
 }
+ngx-snake ngx-snake-tile .active {
+    background: #fff;
+}
+ngx-snake ngx-snake-tile.free div .active{
+    background: #fff;
+}
+#black-and-white-version{
+    background-color: red;
+}
+#black-and-white-version .active{
+    background-color: blue;
+}

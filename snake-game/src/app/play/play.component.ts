@@ -9,7 +9,6 @@ import { ScoreService } from '../Services/score.service';
   styleUrls: ['./play.component.css']
 })
 export class PlayComponent implements OnInit {
-  name = '';
   timer: number = 0;
   playing: boolean = true;
   gameStatus: string = 'Ready to go';
@@ -28,7 +27,6 @@ export class PlayComponent implements OnInit {
     this.gameHistory.push(`Second ${this.timer}: ` + this.gameStatus)
     this.resetTimer = false;
     this.disableDropdownFilter = false;
-    console.log(this.points)
   }
   public gameStatusEnd(){
     this.gameStatus = 'Game over'
@@ -57,14 +55,13 @@ export class PlayComponent implements OnInit {
   }
   public pointsCount() {
     this.points++;
-    console.log(this.points)
   }
   public sortScores(value: any){
     this.scores.reverse();
   }
   public sendScore(){
     let score = {
-      'name': this.name, 
+      'name': this.data.name, 
       'game': 'snake', 
       'score': this.points.toString(),
     }
@@ -72,7 +69,7 @@ export class PlayComponent implements OnInit {
   }
 
   constructor(
-    private data: DataService,
+    public data: DataService,
     private score: ScoreService
   ) {
     this.score.fetchScore().subscribe((data) => {
@@ -81,7 +78,7 @@ export class PlayComponent implements OnInit {
       
       this.scores = this.scores.sort(function(a: any, b: any){
         return b.score - a.score
-      }).slice(0, 15)
+      }).slice(0, 10)
     });
    }
 
@@ -92,9 +89,5 @@ export class PlayComponent implements OnInit {
         this.timer = element;
       })
     }
-
-    this.data.share.subscribe((value: string) => this.name = value);
-
-    //filtering scores for only top 10 entries
   }
 }

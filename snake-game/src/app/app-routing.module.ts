@@ -5,7 +5,9 @@ import { PlayComponent } from './play/play.component';
 
 const routes: Routes = [
     {path: '', component: LoginFormComponent},
-    {path: 'game', component: PlayComponent}
+    // {path: '**', component: 404},
+    {path: 'game', component: PlayComponent},
+    // {path: 'game/color/:version', component: PlayComponent}
 ]
 
 @NgModule({

@@ -2,7 +2,7 @@
     <div class="form-container">
         <div class="form-group margin">
             <label for="username" >User name</label>
-            <input ngModel type="text" formControlName="userName" [ngClass]="{'invalidBorder':submitted && loginForm.controls.userName.errors}">
+            <input [(ngModel)]="name" type="text" formControlName="userName" [ngClass]="{'invalidBorder':submitted && loginForm.controls.userName.errors}">
             <div *ngIf="submitted && loginForm.controls.userName.errors" class="text-error">
                 <div *ngIf="submitted && loginForm.controls.userName.errors.required">
                     User name is required!
@@ -34,7 +34,6 @@
         <div class="margin">
             <div class="form-group">
                 <button class="start-button"  type="submit" (click)="onSubmit()" [routerLink]="accessGranted ? ['/game'] : []">Start game!</button>
-                <button (click)="test()">TEST</button>
             </div>
         </div>
     </div>

@@ -8,12 +8,4 @@ import { Component, Input } from '@angular/core';
 export class AppComponent {
   title = 'snake-game';
 
-  startSnake: boolean = false;
-  receiveStart($event: any){
-    this.startSnake = true;
-  }
-  getStartStopValue(value: boolean){
-    this.startSnake = value;
-  }
-
 }
