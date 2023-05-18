@@ -3,15 +3,21 @@
 .form-control.ng-touched.ng-invalid{
     border: 2px solid red;
 }
-ngx-snake ngx-snake-tile .active {
+.highContrast ngx-snake ngx-snake-tile{
     background: #fff;
 }
-ngx-snake ngx-snake-tile.free div .active{
+.highContrast ngx-snake ngx-snake-tile.free div{
     background: #fff;
 }
-#black-and-white-version{
-    background-color: red;
+.highContrast ngx-snake ngx-snake-tile.tail div{
+    background: #000000;
 }
-#black-and-white-version .active{
-    background-color: blue;
+.highContrast ngx-snake ngx-snake-tile.body div{
+    background: #000000;
+}
+.highContrast ngx-snake ngx-snake-tile.head div{
+    background: #000000;
+}
+.highContrast ngx-snake ngx-snake-tile.food div{
+    background: #000000;
 }

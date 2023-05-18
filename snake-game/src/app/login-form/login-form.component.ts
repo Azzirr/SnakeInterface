@@ -3,6 +3,7 @@ import { DataService } from '../Services/data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ScoreService } from '../Services/score.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'login-form',
   templateUrl: './login-form.component.html',
@@ -15,8 +16,9 @@ export class LoginFormComponent implements OnInit {
     private score: ScoreService,
     private formBuilder: FormBuilder,
     private http: HttpClient,
+    private router: Router
     ){
-
+  
   }
   loginForm!:FormGroup
   tokenType: string = 'password';
@@ -28,7 +30,11 @@ export class LoginFormComponent implements OnInit {
   authComplete: any = {
     success: false
   };
+  selectedColor: string = 'normal';
 
+  onColorSelect(event: any){
+    this.selectedColor = event.target.value;
+  }
   hidePassword(){
     if(this.tokenShown){
       this.tokenShown = false;
@@ -51,6 +57,13 @@ export class LoginFormComponent implements OnInit {
       if(this.authComplete['success'] === true){
         this.score.getAuth(this.token);
         this.accessGranted = true;
+        if(this.accessGranted === true){
+          if(this.selectedColor === 'normal'){
+            this.router.navigate(['/game'])
+          } else if(this.selectedColor === 'black-and-white'){
+            this.router.navigate(['/game/black-and-white'])
+          }
+        } 
       }
     }
   }
@@ -68,7 +81,7 @@ export class LoginFormComponent implements OnInit {
     //validations
     this.loginForm = this.formBuilder.group({
       userName:['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
-      password:['', [Validators.required, Validators.minLength(4)]]
+      password:['', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
     })
   }
 

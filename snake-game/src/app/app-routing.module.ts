@@ -7,7 +7,7 @@ const routes: Routes = [
     {path: '', component: LoginFormComponent},
     // {path: '**', component: 404},
     {path: 'game', component: PlayComponent},
-    // {path: 'game/color/:version', component: PlayComponent}
+    {path: 'game/:black-and-white', component: PlayComponent}
 ]
 
 @NgModule({

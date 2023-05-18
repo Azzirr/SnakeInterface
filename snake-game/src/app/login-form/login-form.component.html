@@ -23,8 +23,8 @@
                 <div *ngIf="submitted && loginForm.controls.password.errors.required">
                     Password is required!
                 </div>
-                <div *ngIf="submitted && loginForm.controls.password.errors.minlength">
-                    User name should be minimum 4 characters!
+                <div *ngIf="submitted && loginForm.controls.password.errors.minlength || submitted && loginForm.controls.password.errors.maxlength">
+                    Token should be 4 characters!
                 </div>
             </div>
         </div>
@@ -32,8 +32,14 @@
             <button item-end (click)="hidePassword()">Show/Hide token</button>
         </div>
         <div class="margin">
+            <select (change)="onColorSelect($event)">
+                <option value="normal">Normal</option>
+                <option value="black-and-white" >Black and white</option>
+            </select>        
+        </div>
+        <div class="margin">
             <div class="form-group">
-                <button class="start-button"  type="submit" (click)="onSubmit()" [routerLink]="accessGranted ? ['/game'] : []">Start game!</button>
+                <button class="start-button"  type="submit" (click)="onSubmit()">Start game!</button>
             </div>
         </div>
     </div>

@@ -68,12 +68,6 @@
   transform: scale(1.05) rotate(-1deg);
 }
 
-ngx-snake-tile {
-  background: red;
-}
-
-
-
 #scores {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;

@@ -1,14 +1,28 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { NgxSnakeComponent } from 'ngx-snake';
 import { interval } from 'rxjs';
 import { DataService } from '../Services/data.service';
 import { ScoreService } from '../Services/score.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.css']
 })
 export class PlayComponent implements OnInit {
+  constructor(
+    public data: DataService,
+    private score: ScoreService,
+    private route: ActivatedRoute,
+  ) {
+    this.score.fetchScore().subscribe((data) => {
+      this.scores = data;
+      console.log(typeof this.scores[1].score)
+      
+      this.scores = this.scores.sort(function(a: any, b: any){
+        return b.score - a.score
+      }).slice(0, 10)
+    });
+   }
   timer: number = 0;
   playing: boolean = true;
   gameStatus: string = 'Ready to go';
@@ -21,7 +35,7 @@ export class PlayComponent implements OnInit {
   resetTimer: boolean = false;
   disableDropdownFilter: boolean = true;
   scores: Array<any> = [];
-
+  setContrast: boolean = false;
   public gameStatusStart(){
     this.gameStatus = 'Game is running'
     this.gameHistory.push(`Second ${this.timer}: ` + this.gameStatus)
@@ -59,6 +73,7 @@ export class PlayComponent implements OnInit {
   public sortScores(value: any){
     this.scores.reverse();
   }
+
   public sendScore(){
     let score = {
       'name': this.data.name, 
@@ -68,26 +83,16 @@ export class PlayComponent implements OnInit {
     this.score.addScore(score)
   }
 
-  constructor(
-    public data: DataService,
-    private score: ScoreService
-  ) {
-    this.score.fetchScore().subscribe((data) => {
-      this.scores = data;
-      console.log(typeof this.scores[1].score)
-      
-      this.scores = this.scores.sort(function(a: any, b: any){
-        return b.score - a.score
-      }).slice(0, 10)
-    });
-   }
-
   ngOnInit(): void {
     const time = interval(1000);
     if(this.playing){
       time.subscribe((element) => {
         this.timer = element;
       })
+    }
+
+    if(this.route.snapshot.params['black-and-white'] === 'black-and-white'){
+      this.setContrast = true;
     }
   }
 }
