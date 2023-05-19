@@ -35,6 +35,7 @@
             <button (click)="game.actionStart()" (click)="gameStatusStart()" style="font-size: 26px;" class="button">Start</button>
             <button (click)="game.actionStop()" (click)="gameStatusPaused()" style="font-size: 26px;" class="button">Stop</button>
             <button (click)="game.actionReset()" (click)="gameStatusReset()" style="font-size: 26px;" class="button">Reset</button>
+            <button (click)="changeBoardStyle()" style="font-size: 26px;" class="button">Change board color</button>
             <div>
                 <button style="font-size: 16px;" class="button" (click)="sendScore()">Send score</button>
             </div>
@@ -73,6 +74,7 @@
         </table>
 
         <button (click)="sortScores($event)">Sort ascending/descending</button>
+        <button (click)="sortByMyName()">Sort by my name</button>
     </div>
 </div>
 </div>

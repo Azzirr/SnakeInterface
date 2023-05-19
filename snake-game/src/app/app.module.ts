@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ScoreService } from './Services/score.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SortPipe } from './Pipes/sort.pipe';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SortPipe } from './Pipes/sort.pipe';
     PlayComponent,
     FilterPipe,
     SortPipe,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 import { interval } from 'rxjs';
 import { DataService } from '../Services/data.service';
 import { ScoreService } from '../Services/score.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
@@ -13,11 +13,10 @@ export class PlayComponent implements OnInit {
     public data: DataService,
     private score: ScoreService,
     private route: ActivatedRoute,
+    private router: Router
   ) {
     this.score.fetchScore().subscribe((data) => {
-      this.scores = data;
-      console.log(typeof this.scores[1].score)
-      
+      this.scores = data;        
       this.scores = this.scores.sort(function(a: any, b: any){
         return b.score - a.score
       }).slice(0, 10)
@@ -36,6 +35,7 @@ export class PlayComponent implements OnInit {
   disableDropdownFilter: boolean = true;
   scores: Array<any> = [];
   setContrast: boolean = false;
+  setMyNameSort: boolean = false;
   public gameStatusStart(){
     this.gameStatus = 'Game is running'
     this.gameHistory.push(`Second ${this.timer}: ` + this.gameStatus)
@@ -81,6 +81,38 @@ export class PlayComponent implements OnInit {
       'score': this.points.toString(),
     }
     this.score.addScore(score)
+  }
+  
+  public changeBoardStyle(){
+    if(this.setContrast === false){
+      this.router.navigate(['/game/black-and-white'])
+    } else if(this.setContrast === true){
+      this.router.navigate(['/game'])
+    }
+  }
+
+  public sortByMyName(){
+    if(this.setMyNameSort === true){
+      this.setMyNameSort = false;
+      this.score.fetchScore().subscribe((data) => {
+        this.scores = data;        
+        this.scores = this.scores.sort(function(a: any, b: any){
+          return b.score - a.score
+        }).slice(0, 10)
+      });    } else if(this.setMyNameSort === false){
+      this.setMyNameSort = true
+      this.fetchMyScores()
+    }
+  }
+
+  public fetchMyScores(){
+    let sortByMyName: string = this.data.name
+    this.score.fetchScore().subscribe((data) => {
+      this.scores = data;        
+      this.scores = this.scores.filter(function(a: any){
+        return a.name.toLowerCase() === sortByMyName.toLowerCase();
+      }).slice(0, 10)
+    })
   }
 
   ngOnInit(): void {
