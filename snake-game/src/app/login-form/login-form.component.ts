@@ -49,33 +49,33 @@ export class LoginFormComponent implements OnInit {
   whenEmpty!: ElementRef;
 
   onSubmit(){
-    this.submitted = true;
-    if(this.loginForm.invalid){
-      return;
-    } else{
-      this.data.name = this.name;
-      if(this.authComplete['success'] === true){
-        this.score.getAuth(this.token);
-        this.accessGranted = true;
-        if(this.accessGranted === true){
-          if(this.selectedColor === 'normal'){
-            this.router.navigate(['/game'])
-          } else if(this.selectedColor === 'black-and-white'){
-            this.router.navigate(['/game/black-and-white'])
-          }
-        } 
-      }
-    }
-  }
-  onAuthClient(){
-    let data = {
+    let tokenData = {
       "auth-token": this.token
     }
-    this.http.post('http://scores.chrum.it/check-token', data)
+    this.http.post('http://scores.chrum.it/check-token', tokenData)
     .subscribe((response) => {
       console.log(response)
       this.authComplete = response;
     });
+    this.submitted = true;
+    setTimeout(() => {
+      if(this.loginForm.invalid){
+        return;
+      } else{
+        this.data.name = this.name;
+        if(this.authComplete['success'] === true){
+          this.score.getAuth(this.token);
+          this.accessGranted = true;
+          if(this.accessGranted === true){
+            if(this.selectedColor === 'normal'){
+              this.router.navigate(['/game'])
+            } else if(this.selectedColor === 'black-and-white'){
+              this.router.navigate(['/game/black-and-white'])
+            }
+          } 
+        }
+      }
+    }, 500)
   }
   ngOnInit(): void {
     //validations
